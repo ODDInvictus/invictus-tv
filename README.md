@@ -24,7 +24,12 @@ Een prachtig tv scherm voor het colosseum!
   Uncomment loadPhotos() in scripts/app.js
 <br>
 
- 3. Run
+3. Install node packages
+  ```sh
+  npm install
+  ```
+
+4. Run
 
    - Linux:
   ```sh
