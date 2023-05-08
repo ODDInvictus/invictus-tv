@@ -1,10 +1,12 @@
 function quote() {
-   $.ajax({
-      method: 'GET',
-      url: 'http://localhost:4200/quote',
-      dataType: 'json'
-   }).done( function(res) {
-      $('p#quote').text(res.quote);
+   fetch("https://bot.nautdevroome.nl/quote", {
+      headers: {
+         Authorization: getDiscordBotSecretKey()
+      }
+   })
+   .then(res => res.json())
+   .then(data => {
+      $('p#quote').text(data.quote);
    });
 
    setTimeout(quote, 45000);
