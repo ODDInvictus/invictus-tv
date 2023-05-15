@@ -2,21 +2,26 @@ let numOfPhotos = 0;
 let current = 0
 
 function loadPhotos() {
-   $.ajax({
-      url: './fotos',
-      method: 'GET'
-   }).done( function(res) {
-      $(res).find("a").attr("href", function (i, val) {
-         if( val.match(/\.(jpe?g|png)$/) ) { 
-            $("#right").append( "<span><img src='" + val +"'></span>" );
-            numOfPhotos++;
-         } 
-   });
-   });
+   $("#right").empty();
+   fetch("https://bot.nautdevroome.nl/photo", {
+      method: "GET",
+      headers: {
+         Authorization: getDiscordBotSecretKey()
+      }
+   })
+   .then(res => res.json())
+   .then(data => {
+      const photos = data.photos;
+      for (let photo of photos) {
+         numOfPhotos++;
+         $("#right").append(`<span><img src="${photo}"></span>`);
+      }
+   })
 }
 
 function slidePhotos() {
    current = current < numOfPhotos - 1 ? current + 1 : 0;
+   if (current == 0) loadPhotos();
    $('#right').css('transform', 'translateY(-' + current * 100 + 'vh)');
    setTimeout(slidePhotos, 10000);
 }

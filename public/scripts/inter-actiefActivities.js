@@ -11,28 +11,34 @@ function interActiviteiten() {
 }
 
 function getActivities() {
-   $.ajax({
-      method: 'POST',
-      url: 'https://www.inter-actief.utwente.nl/api/',
-      dataType: 'json',
-      data: JSON.stringify({
-         "jsonrpc": "2.0",
-         "method": "getUpcomingActivities",
-         "params": [ 7, true ],
-         "id": 1446131
+   fetch("https://www.inter-actief.utwente.nl/api/", {
+      method: "POST",
+      headers: {
+         "Accept-Language": "nl-NL",
+         "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+         jsonrpc: "2.0",
+         method: "getUpcomingActivities",
+         params: [7, true],
+         id: 21423
       })
-   }).done( (res) => {
-      $('#ia').html("<h2>Inter-<i>Actief</i></h2>");
-      for (let i = 0; i < res.result.length; i++) {
-         $('#ia').append(`<p>${res.result[i].title}</p>`);
-         $('#ia').append(`<p class="date"><i>
-            ${dateFormat(res.result[i].beginDate) + ", " +
-            res.result[i].location}
-            </i></p>`);
-      }
-   });
+   })
+   .then(res => res.json())
+   .then(renderActivities)
 
    setTimeout(getActivities, 1200000);
+}
+
+function renderActivities(data) {
+   $('#ia').html("<h2>Inter-<i>Actief</i></h2>");
+   for (let i = 0; i < data.result.length; i++) {
+      $('#ia').append(`<p>${data.result[i].title}</p>`);
+      $('#ia').append(`<p class="date"><i>
+         ${dateFormat(data.result[i].beginDate) + ", " +
+         data.result[i].location}
+         </i></p>`);
+   }
 }
 
 function dateFormat(date) {
