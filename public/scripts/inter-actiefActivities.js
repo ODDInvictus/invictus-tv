@@ -44,49 +44,50 @@ function renderActivities(data) {
 function dateFormat(date) {
    let res = "";
 
-   const dateSplitted = date.split('T')
-   const day = dateSplitted[0].split('-');
-   res += day[2] + " ";
+   const dateObj = new Date(date);
+   const day = dateObj.getDate();
+   res += day + " ";
+   const month = dateObj.getMonth();
 
-   switch (day[1]) {
-      case '01':
+   switch (month) {
+      case 1:
          res += 'jan ';
          break;
-      case '02':
+      case 2:
          res += 'feb ';
          break;
-      case '03':
+      case 3:
          res += 'mar ';
          break;
-      case '04':
+      case 4:
          res += 'apr ';
          break;
-      case '05':
+      case 5:
          res += 'mei ';
          break;
-      case '06':
+      case 6:
          res += 'juni ';
          break;
-      case '07':
+      case 7:
          res += 'juli ';
          break;
-      case '08':
+      case 8:
          res += 'aug ';
          break;
-      case '09':
+      case 9:
          res += 'sep ';
          break;
-      case '10':
+      case 10:
          res += 'okt ';
          break;
-      case '11':
+      case 11:
          res += 'nov ';
          break;
-      case '12':
+      case 12:
          res += 'dec ';
          break;
    }
 
-   res += dateSplitted[1].substring(0, 5);
+   res += dateObj.getHours() + ":" + dateObj.getMinutes().toString().padStart(2, "0");
    return res
 }

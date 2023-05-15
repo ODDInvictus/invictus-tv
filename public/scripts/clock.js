@@ -1,11 +1,11 @@
 function clock() {
-   date = new Date();
+   const date = new Date();
 
    //Update clock
    $('p#clock').text(format(date.getHours()) + ':' + format(date.getMinutes())  + ':' + format(date.getSeconds()));
 
    // Play 'het is 4 uur' 16 seconds before its 16.00
-   if (date.getHours() == 15 && date.getMinutes == 59 && date.getSeconds == 44) {
+   if (date.getHours() == 15 && date.getMinutes() == 59 && date.getSeconds() == 44) {
       $('#4uur')[0].play();
    }
 
