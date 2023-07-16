@@ -14,6 +14,4 @@ function vbcam() {
       $('#screen').show();
       $('#vbcam').hide();
    }, 7000)
-
-   setTimeout(vbcam, 90000);
 }

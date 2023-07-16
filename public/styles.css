@@ -35,11 +35,13 @@ p {
    z-index: 2;
    width: 50vw;
    height: 100vh;
-   display: flex;
+   display: grid;
    justify-content: center;
    align-items: center;
    flex-direction: column;
+   grid-template-rows: 1fr 1fr;
    transition: transform 1s ease;
+   padding: 7% 0;
 }
 
 #ia {
@@ -68,6 +70,7 @@ p {
 #quote {
    max-width: 45vw;
    text-align: center;
+   transition: opacity 0.8s ease;
 }
 
 #top {
@@ -75,7 +78,6 @@ p {
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   margin-bottom: 100px;
 }
 
 #clock {
@@ -88,7 +90,7 @@ p {
    height: 100vh;
    display: flex;
    flex-direction: column;
-   transition: transform 1s ease-in-out;
+   transition: all 1s ease-in-out;
 }
 
 #right span {

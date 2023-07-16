@@ -6,8 +6,10 @@ function quote() {
    })
    .then(res => res.json())
    .then(data => {
-      $('p#quote').text(data.quote);
+      $('p#quote').css('opacity', '0')
+      setTimeout(() => {
+         $('p#quote').text(data.quote);
+         $('p#quote').css('opacity', '1')
+      }, 800);
    });
-
-   setTimeout(quote, 45000);
 }

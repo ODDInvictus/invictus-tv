@@ -8,8 +8,6 @@ function clock() {
    if (date.getHours() == 15 && date.getMinutes() == 59 && date.getSeconds() == 44) {
       $('#4uur')[0].play();
    }
-
-   setTimeout(clock, 900);
 }
 
 function format(num) {

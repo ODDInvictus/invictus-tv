@@ -1,4 +1,4 @@
-function interActiviteiten() {
+function showInterActiviteiten() {
    $('#ia').css('transform', 'translateY(0px)');
    $('#home').css('transform', 'translateY(100vh)');
 
@@ -6,11 +6,9 @@ function interActiviteiten() {
       $('#ia').css('transform', 'translateY(-100vh)');
       $('#home').css('transform', 'translateY(0px)');
    }, 10000);
-
-   setTimeout(interActiviteiten, 90000)
 }
 
-function getActivities() {
+function getInterAcitviteiten() {
    fetch("https://www.inter-actief.utwente.nl/api/", {
       method: "POST",
       headers: {
@@ -26,8 +24,6 @@ function getActivities() {
    })
    .then(res => res.json())
    .then(renderActivities)
-
-   setTimeout(getActivities, 1200000);
 }
 
 function renderActivities(data) {
